@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var food = context.watch<FoodProvider>().food;
+    var foods = context.watch<FoodProvider>().foods;
     var myList = context.watch<FoodProvider>().myList;
     return Scaffold(
       appBar: AppBar(
@@ -48,9 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 15,),
             Expanded(
                 child:ListView.builder(
-                  itemCount:food.length,
+                  itemCount:foods.length,
                     itemBuilder: (_,index){
-                    final currentFood = food[index];
+                    final currentFood = foods[index];
                     return Card(
                       key: ValueKey(currentFood.name),
                       color: const Color(0xFF89dad0),
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         onPressed:(){
                           if(!myList.contains(currentFood)){
-                            context.read<FoodProvider>().addToList(currentFood);
+                           context.read<FoodProvider>().addToList(currentFood);
                           }else{
                             context.read<FoodProvider>().removeFromList(currentFood);
                           }
